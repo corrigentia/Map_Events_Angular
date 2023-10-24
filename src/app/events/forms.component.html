@@ -1,0 +1,123 @@
+<button mat-button mat-dialog-close>fermer</button>
+<div class="container" align="center">
+  <h2 mat-dialog-title>Créer un évènement</h2>
+  <mat-dialog-content>
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field>
+      <mat-label>Nom de l'évènement</mat-label>
+      <input matInput formControlName="eventname" placeholder="Votre nom de l'évènement" required>
+      <mat-hint>Nom de l'évènement</mat-hint>
+      <mat-error *ngIf="myForm.get('eventname')?.hasError('required')">Insérez le nom de l'évènement</mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description" placeholder="Votre description"></textarea>
+      <mat-hint>Description de l'évènement</mat-hint>
+      <!---mat-error *ngIf="myForm.get('description')?.hasError('required')">Entrez une description</mat-error--->
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+      <mat-label>Nom de la rue</mat-label>
+      <input matInput formControlName="street" placeholder="Votre nom de rue" required>
+      <mat-hint>Nom de la rue</mat-hint>
+      <mat-error *ngIf="myForm.get('street')?.hasError('required')">Insérez le nom de la rue</mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+      <mat-label>Numéro de la rue</mat-label>
+      <input matInput formControlName="number" placeholder="Votre numéro de rue" required>
+      <mat-hint>Numéro de la rue</mat-hint>
+      <mat-error *ngIf="myForm.get('eventname')?.hasError('required')">Insérez le numéro de la rue</mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+      <mat-label>Code postal</mat-label>
+      <input matInput formControlName="zip" placeholder="Votre code postal" required>
+      <mat-hint>Code postal</mat-hint>
+      <mat-error *ngIf="myForm.get('zip')?.hasError('required')">Insérez le code postal</mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+      <mat-label>Nom de la ville</mat-label>
+      <input matInput formControlName="city" placeholder="Votre nom de ville" required>
+      <mat-hint>Nom de la ville</mat-hint>
+      <mat-error *ngIf="myForm.get('city')?.hasError('required')">Insérez le nom de la ville</mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+      <mat-label>Entrez une date de début et fin</mat-label>
+      <mat-date-range-input [rangePicker]="picker">
+        <input matStartDate formControlName="begindate" placeholder="Date de début" required>
+        <input matEndDate  formControlName="enddate" placeholder="Date de fin" required>
+      </mat-date-range-input>
+      <mat-hint>DD/MM/YYYY – DD/MM/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+      <mat-label>Prix</mat-label>
+      <input matInput formControlName="prixtvac" placeholder="Votre prix" required>
+      <mat-hint>Prix de l'évènement</mat-hint>
+      <mat-error *ngIf="myForm.get('prixtvac')?.hasError('required')">Entrez un prix</mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+      <mat-label>Enter URL</mat-label>
+      <input matInput formControlName="weburl" placeholder="Votre url" type="text">
+      <mat-icon>link</mat-icon>
+      <mat-hint>Url de l'évènement</mat-hint>
+      <mat-error *ngIf="myForm.get('weburl')?.hasError('required')">Insérez une url</mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+      <mat-label>Coordonnées x</mat-label>
+      <input matInput formControlName="coordx" placeholder="Votre coordonnée" required>
+      <mat-hint>Coordonnées de l'absys x</mat-hint>
+      <mat-error *ngIf="myForm.get('coordx')?.hasError('required')">Entrez une coordonnée</mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+      <mat-label>Coordonnées y</mat-label>
+      <input matInput formControlName="coordy" placeholder="Votre coordonnée" required>
+      <mat-hint>Coordonnées de l'absys y</mat-hint>
+      <mat-error *ngIf="myForm.get('coordy')?.hasError('required')">Entrez une coordonnée</mat-error>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+      <mat-label>Catégorie</mat-label>
+      <mat-select  formControlName="categid">
+        <mat-option *ngFor="let category of datasEvents_categories" value="{{ category.id_events_categories }}">{{ category.categname }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br><br>
+
+    <mat-form-field>
+      <mat-label>Statut</mat-label>
+      <mat-select  formControlName="status">
+        <mat-option value="true">En ligne</mat-option>
+        <mat-option value="false">Hors ligne</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br><br>
+
+
+  </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="center">
+       <button  mat-fab extended color="primary" (click)="onSubmit()" [disabled]="!myForm.valid">On y va</button>
+  </mat-dialog-actions>
+</div>

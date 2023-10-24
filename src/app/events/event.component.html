@@ -1,0 +1,24 @@
+<button mat-button mat-dialog-close>fermer</button>
+<br>
+<div class="container" align="center">
+  <!---h2 mat-dialog-title>{{datasEvent.eventname}}</h2--->
+  <mat-dialog-content>
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{ datasEvent.eventname }} </mat-card-title>
+        <mat-card-subtitle>{{ datasEvent?.category?.categname }}</mat-card-subtitle>
+      </mat-card-header>
+      <img mat-card-image src="{{ datasEvent.imageurl }}" alt="Photo of a Shiba Inu">
+      <mat-card-content>
+        <p>
+        {{ datasEvent.date | date:'EEEE dd/MM (YYYY)':'':'fr'}}<br>
+        {{ datasEvent.description }}<br>
+        <b>{{ datasEvent.date | date:'H':'':'fr'}}h</b>
+        </p>
+      </mat-card-content>
+    <a href="{{ datasEvent.weburl }}" target="_blank"><button class="primary" mat-button>Réserver</button></a>
+    </mat-card>
+
+  </mat-dialog-content>
+</div>

@@ -1,0 +1,52 @@
+<button mat-button mat-dialog-close>fermer</button>
+<div class="container" align="center">
+  <h2>S'enregistrer</h2>
+  <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+      <mat-form-field>
+          <mat-label>Prénom</mat-label>
+          <input matInput placeholder="Votre prénom" formControlName="firstname" required>
+          <mat-hint>Votre prénom</mat-hint>
+          <mat-error *ngIf="registrationForm.get('firstname')?.hasError('required')">Insérez votre prénom</mat-error>
+      </mat-form-field>
+      <br><br>
+
+      <mat-form-field>
+          <mat-label>Nom</mat-label>
+          <input matInput placeholder="Votre nom" formControlName="lastname" required>
+          <mat-hint>Votre nom</mat-hint>
+          <mat-error *ngIf="registrationForm.get('lastname')?.hasError('required')">Insérez votre nom</mat-error>
+      </mat-form-field>
+      <br><br>
+
+      <mat-form-field>
+          <mat-label>Email Address</mat-label>
+          <input matInput placeholder="Votre e-mail" formControlName="email" required>
+          <mat-hint>Votre e-mail</mat-hint>
+          <mat-error *ngIf="registrationForm.get('email')?.hasError('required')">Insérez votre e-mail</mat-error>
+          <mat-error *ngIf="registrationForm.get('email')?.hasError('email')">Insérez un e-mail valide</mat-error>
+      </mat-form-field>
+      <br><br>
+
+      <mat-form-field>
+          <mat-label>Password</mat-label>
+          <input matInput type="password" placeholder="Votre mot de passe" formControlName="password" required>
+          <mat-hint>Votre mot de passe</mat-hint>
+          <mat-error *ngIf="registrationForm.get('password')?.hasError('required')">Insérez votre mot de passe !!!</mat-error>
+          <mat-error *ngIf="registrationForm.get('password')?.hasError('passwordWeak')">Insérer un mot de passe de 8 caractères minimu et comprenant un caractère spécial</mat-error>
+      </mat-form-field>
+      <br><br>
+
+      <mat-form-field>
+          <mat-label>Confirmez le mot de passe</mat-label>
+          <input matInput type="password" placeholder="Confirmez votre mot de passe" formControlName="confirmPassword">
+          <mat-hint>Votre mot de passe</mat-hint>
+          <mat-error *ngIf="registrationForm.hasError('passwordMismatch')">La confirmation du mot de passe ne correspond pas au mot de passe fourni.</mat-error>
+      </mat-form-field>
+      <br><br>
+
+      <button  mat-fab extended color="primary"   type="submit" [disabled]="!registrationForm.valid">On y va</button>
+
+  </form>
+</div>
+

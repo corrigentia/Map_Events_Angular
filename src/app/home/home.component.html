@@ -1,0 +1,52 @@
+
+
+  <div>
+  <google-map height="500px"
+
+      width="100%"
+
+      [center]="center"
+
+      [zoom]="zoom"
+
+
+
+      (mapMousemove)="move($event)">
+
+      <!---(mapClick)="addMarker($event)"--->
+      <!--- (mapClick)="moveMap($event)"--->
+      <ng-container *ngFor="let elem of markers">
+        <map-marker #marker="mapMarker" [position]="elem.position" [title]="elem.eventname" [options]="elem.options" (mapClick)="openInfoWindow(marker,infoWindow)"></map-marker>
+        <!---[label]="elem.label"--->
+        <map-info-window #infoWindow="mapInfoWindow"><!---  (click)="openEvent(elem.id)" -->
+          {{elem.datetime | date:'EEEE dd/MM (YYYY)':'':'fr'}}<br>
+          <b>{{ elem.eventname }}</b><br>
+          <i>{{ elem.description }}</i><br>
+          <b>{{elem.datetime | date:'H':'':'fr'}}h<br></b><br>
+          <a href="{{ elem.weburl }}" target="_blank"><button class="primary" mat-button>Réserver</button></a><br>
+          <img mat-card-image src="{{ elem.imageurl }}" alt="Photo of a Shiba Inu" width="100%">
+        </map-info-window>
+      </ng-container>
+  </google-map>
+  <!---
+                <map-marker
+      *ngFor="let marker of markers"
+      [position]="marker.position"
+      [label]="marker.label"
+      [title]="marker.title"
+      [options]="marker.options"
+    >
+    </map-marker>
+  --->
+
+</div>
+  <!---div>Latitude: {{display?.lat}}</div>
+
+  <div>Longitude: {{display?.lng}}</div--->
+
+  <app-events></app-events>
+
+
+
+
+
